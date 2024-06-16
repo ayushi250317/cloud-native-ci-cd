@@ -1,0 +1,8 @@
+services:
+  assignment2:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - FLASK_ENV=development
+    command: flask run --host=0.0.0.0 --port=8000
