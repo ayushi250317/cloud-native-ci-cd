@@ -28,3 +28,6 @@ steps:
 images:
   # Specify the image to be pushed to Artifact Registry
   - 'gcr.io/$PROJECT_ID/app1:$COMMIT_SHA'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
