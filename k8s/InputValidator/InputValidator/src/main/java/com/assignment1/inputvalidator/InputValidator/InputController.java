@@ -1,15 +1,13 @@
 package com.assignment1.inputvalidator.InputValidator;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.exceptions.CsvValidationException;
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +25,7 @@ public class InputController {
             return ResponseEntity.ok(errorResponse);
         }
         if (!inputValidationService.doesFileExists(request.getFile())) {
-            ErrorResponse errorResponse = ErrorResponse.builder().file(request.getFile()).error("File not found.")
+            ErrorResponse errorResponse = ErrorResponse.builder().file(request.getFile()).error("File not not found.")
                     .build();
             return ResponseEntity.ok(errorResponse);
         }
@@ -40,8 +38,8 @@ public class InputController {
         ValidResponse validResponse = ValidResponse.builder().file(request.getFile()).sum(value).build();
         return ResponseEntity.ok(validResponse);
     }
-
-    @PostMapping("/store-file")
+//hi
+    @PostMapping("/storefile")
     public ResponseEntity<Object> storeFile(@RequestBody DataRequest request) throws CsvValidationException, IOException {
         if(inputValidationService.storeFile(request.getFile(),request.getData())){
             MessageResponse messageResponse= MessageResponse.builder().file(request.getFile()).message("Success.").build();

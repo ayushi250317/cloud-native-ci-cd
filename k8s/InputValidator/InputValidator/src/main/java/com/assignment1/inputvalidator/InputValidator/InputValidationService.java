@@ -3,6 +3,9 @@ package com.assignment1.inputvalidator.InputValidator;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +64,7 @@ public class InputValidationService {
         } catch (IOException e) {
             return false;
         }
-        if(records.size()==0){
+        if (records.size() == 0) {
             return false;
         }
         String[] columns = records.get(0);
@@ -85,25 +88,37 @@ public class InputValidationService {
         return true;
     }
 
-    public Integer sendPostRequest(String url, Object requestBody) throws JsonMappingException, JsonProcessingException {
+    public Integer sendPostRequest(String url, Object requestBody)
+            throws JsonMappingException, JsonProcessingException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Object> requestEntity = new HttpEntity<>(requestBody, headers);
 
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity,String.class);
-        String responseBody=responseEntity.getBody();
+        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity,
+                String.class);
+        String responseBody = responseEntity.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
-        String value=jsonNode.get("sum").asText();
+        String value = jsonNode.get("sum").asText();
         final Logger logger = LoggerFactory.getLogger(InputValidationService.class);
         logger.info(responseBody);
         logger.info("Success");
-       return Integer.parseInt(value);
+        return Integer.parseInt(value);
     }
 
-    public Boolean storeFile(String fileName, String contents){
-        String rootPath = "file:/app/data/";
+    public Boolean storeFile(String fileName, String contents) throws IOException {
+        
+       String rootPath = resourceLoader.getResource("file:/app/data/ayushi_dir/").getFile().getAbsolutePath();
+        
+        Path directoryPath = Paths.get(rootPath);
+        if (!Files.exists(directoryPath)) {
+            Files.createDirectories(directoryPath);
+        }
+
+        Path filePath = directoryPath.resolve(fileName);
+        Files.write(filePath, contents.getBytes());
+
         return true;
     }
 
