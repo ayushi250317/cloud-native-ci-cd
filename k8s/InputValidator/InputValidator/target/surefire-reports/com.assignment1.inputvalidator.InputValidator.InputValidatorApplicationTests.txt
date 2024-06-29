@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.assignment1.inputvalidator.InputValidator.InputValidatorApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.734 s -- in com.assignment1.inputvalidator.InputValidator.InputValidatorApplicationTests
