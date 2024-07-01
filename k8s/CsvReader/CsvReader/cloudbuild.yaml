@@ -1,0 +1,33 @@
+steps:
+  # Step 1: Pull code from GitHub
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        git clone --depth=1 https://github.com/ayushi250317/k8s-assignment.git /workspace
+        cp -r /workspace/k8s/CsvReader/CsvReader/* .
+
+  # Step 2: Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app2:$COMMIT_SHA'
+      - '-f'
+      - 'Dockerfile_Container2'
+      - '.'
+    dir: '/workspace/k8s/CsvReader/CsvReader'  # Specify the directory where Dockerfile is located
+
+  # Step 3: Push Docker image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app2:$COMMIT_SHA'
+
+images:
+  # Specify the image to be pushed to Artifact Registry
+  - 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app2:$COMMIT_SHA'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
