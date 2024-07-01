@@ -1,13 +1,19 @@
 services:
   inputvalidator:
-    image: ayushi9799/inputvalidator
+    image: ayushi9799/k8s-inputvalidator
+    # build: 
+    #   context: ./InputValidator/InputValidator
+    #   dockerfile: Dockerfile_Container1
     ports:
       - "6000:6000"
     volumes:
       - .:/app/data
   
   csvreader:
-    image: ayushi9799/csvreader:latest
+    image: ayushi9799/k8s-csvreader
+    # build:
+    #   context: ./CsvReader/CsvReader
+    #   dockerfile: Dockerfile_Container2
     ports:
       - "6001:6001"
     volumes:

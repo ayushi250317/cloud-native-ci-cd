@@ -38,8 +38,8 @@ public class InputController {
         ValidResponse validResponse = ValidResponse.builder().file(request.getFile()).sum(value).build();
         return ResponseEntity.ok(validResponse);
     }
-//hi2
-    @PostMapping("/storefile")
+
+    @PostMapping("/store-file")
     public ResponseEntity<Object> storeFile(@RequestBody DataRequest request) throws CsvValidationException, IOException {
         if(inputValidationService.storeFile(request.getFile(),request.getData())){
             MessageResponse messageResponse= MessageResponse.builder().file(request.getFile()).message("Success.").build();
