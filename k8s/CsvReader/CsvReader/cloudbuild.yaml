@@ -25,9 +25,24 @@ steps:
       - 'push'
       - 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app2:$COMMIT_SHA'
 
+ - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+    - run
+    - --filename=./deployment
+    - --image=${_IMAGE_NAME}:$COMMIT_SHA
+    - --location=${_CLUSTER_LOCATION}
+    - --cluster=${_CLUSTER_NAME}
+    - --timeout=10m
+
 images:
   # Specify the image to be pushed to Artifact Registry
   - 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app2:$COMMIT_SHA'
+
+substitutions:
+  _IMAGE_NAME: 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app2'
+  _CLUSTER_LOCATION: 'us-central1-c'
+  _CLUSTER_NAME: 'test-cluster'
+
 
 options:
   logging: CLOUD_LOGGING_ONLY
