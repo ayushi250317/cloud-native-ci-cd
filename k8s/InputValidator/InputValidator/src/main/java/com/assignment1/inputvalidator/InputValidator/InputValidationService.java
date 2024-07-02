@@ -71,7 +71,7 @@ public class InputValidationService {
         if (columns.length != 2) {
             return false;
         }
-        if (!columns[0].equals("product") || !columns[1].equals("amount")) {
+        if (!columns[0].trim().equals("product") || !columns[1].trim().equals("amount")) {
             return false;
         }
         for (int i = 1; i < records.size(); i++) {
@@ -80,7 +80,7 @@ public class InputValidationService {
                 return false;
             }
             try {
-                Integer.parseInt(record[1]);
+                Integer.parseInt(record[1].trim());
             } catch (NumberFormatException e) {
                 return false;
             }
