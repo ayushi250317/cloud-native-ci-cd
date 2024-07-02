@@ -25,7 +25,7 @@ steps:
       - 'push'
       - 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app2:$COMMIT_SHA'
 
- - name: "gcr.io/cloud-builders/gke-deploy"
+  - name: "gcr.io/cloud-builders/gke-deploy"
     args:
     - run
     - --filename=./deployment
