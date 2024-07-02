@@ -41,7 +41,7 @@ images:
 substitutions:
   _IMAGE_NAME: 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app1'
   _CLUSTER_LOCATION: 'us-central1-c'
-  _CLUSTER_NAME: 'test-cluster'
+  _CLUSTER_NAME: 'test-cluster2'
 
 options:
   logging: CLOUD_LOGGING_ONLY
