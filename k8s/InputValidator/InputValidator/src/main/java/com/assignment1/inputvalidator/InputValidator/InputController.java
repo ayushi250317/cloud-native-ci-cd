@@ -33,7 +33,7 @@ public class InputController {
             ErrorResponse errorResponse=ErrorResponse.builder().file(request.getFile()).error("Input file not in CSV format.").build();
             return ResponseEntity.ok(errorResponse);
         }
-        String url = "http://csvreader:6001/sum";
+        String url = "http://app2-service:6001/sum";
         Integer value=inputValidationService.sendPostRequest(url, request);
         ValidResponse validResponse = ValidResponse.builder().file(request.getFile()).sum(value).build();
         return ResponseEntity.ok(validResponse);
