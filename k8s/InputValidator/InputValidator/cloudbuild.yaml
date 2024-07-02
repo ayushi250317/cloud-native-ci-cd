@@ -32,6 +32,7 @@ steps:
     - --image=${_IMAGE_NAME}:$COMMIT_SHA
     - --location=${_CLUSTER_LOCATION}
     - --cluster=${_CLUSTER_NAME}
+    - --timeout=10m
 
 images:
   # Specify the image to be pushed to Artifact Registry
