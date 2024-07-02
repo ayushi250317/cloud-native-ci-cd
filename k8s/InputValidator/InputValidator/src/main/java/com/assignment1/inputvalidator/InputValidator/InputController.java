@@ -25,7 +25,7 @@ public class InputController {
             return ResponseEntity.ok(errorResponse);
         }
         if (!inputValidationService.doesFileExists(request.getFile())) {
-            ErrorResponse errorResponse = ErrorResponse.builder().file(request.getFile()).error("File not not found.")
+            ErrorResponse errorResponse = ErrorResponse.builder().file(request.getFile()).error("File not found.")
                     .build();
             return ResponseEntity.ok(errorResponse);
         }
