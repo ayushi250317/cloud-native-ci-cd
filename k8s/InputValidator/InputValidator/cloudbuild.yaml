@@ -8,7 +8,7 @@ steps:
         git clone --depth=1 https://github.com/ayushi250317/k8s-assignment.git /workspace
         cp -r /workspace/k8s/InputValidator/InputValidator/* .
 
-  # Step 2: Build Docker image
+  # Step 2: Build Docker image for app1
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
