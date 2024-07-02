@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class CsvReaderService {
     private final ResourceLoader resourceLoader;
      public Integer calculateSum(String fileName, String product) throws CsvValidationException, IOException {
-        String rootPath = "file:/app/data/Ayushi_PV_dir/";
+        String rootPath = "file:/app/Ayushi_PV_dir/";
         String filePath = rootPath + fileName;
         List<String[]> records = new ArrayList<>();
         Resource resource = resourceLoader.getResource(filePath);

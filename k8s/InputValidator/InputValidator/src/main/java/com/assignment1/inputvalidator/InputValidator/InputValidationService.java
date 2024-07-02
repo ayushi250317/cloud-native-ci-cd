@@ -41,7 +41,7 @@ public class InputValidationService {
 
     public boolean doesFileExists(String fileName) {
         // Load the file as a resource
-        String rootPath = "file:/app/data/Ayushi_PV_dir/";
+        String rootPath = "file:/app/Ayushi_PV_dir/";
         String filePath = rootPath + fileName;
         Resource resource = resourceLoader.getResource(filePath);
         if (!resource.exists()) {
@@ -51,7 +51,7 @@ public class InputValidationService {
     }
 
     public boolean isValidCSV(String fileName) throws CsvValidationException, IOException {
-        String rootPath = "file:/app/data/Ayushi_PV_dir/";
+        String rootPath = "file:/app/Ayushi_PV_dir/";
         String filePath = rootPath + fileName;
         List<String[]> records = new ArrayList<>();
         Resource resource = resourceLoader.getResource(filePath);
@@ -109,7 +109,7 @@ public class InputValidationService {
 
     public Boolean storeFile(String fileName, String contents) throws IOException {
         
-       String rootPath = resourceLoader.getResource("file:/app/data/Ayushi_PV_dir/").getFile().getAbsolutePath();
+       String rootPath = resourceLoader.getResource("file:/app/Ayushi_PV_dir/").getFile().getAbsolutePath();
         
         Path directoryPath = Paths.get(rootPath);
         if (!Files.exists(directoryPath)) {
