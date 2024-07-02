@@ -31,7 +31,7 @@ public class CsvReaderService {
             }
         } catch (IOException e) {
         }
-        Integer sum=0;
+        Integer sum=5;
         for (int i = 1; i < records.size(); i++) {
             String[] record = records.get(i);
             if(record[0].trim().equals(product)){
