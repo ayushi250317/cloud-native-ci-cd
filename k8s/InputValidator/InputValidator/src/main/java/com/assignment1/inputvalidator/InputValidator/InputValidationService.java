@@ -109,7 +109,7 @@ public class InputValidationService {
 
     public Boolean storeFile(String fileName, String contents) throws IOException {
         
-       String rootPath = resourceLoader.getResource("file:/app/data/ayushi_dir/").getFile().getAbsolutePath();
+       String rootPath = resourceLoader.getResource("file:/app/data/Ayushi_PV_dir/").getFile().getAbsolutePath();
         
         Path directoryPath = Paths.get(rootPath);
         if (!Files.exists(directoryPath)) {
