@@ -33,9 +33,9 @@ steps:
     - --location=${_CLUSTER_LOCATION}
     - --cluster=${_CLUSTER_NAME}
 
-images:
-  # Specify the image to be pushed to Artifact Registry
-  - 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app1:$COMMIT_SHA'
+# images:
+#   # Specify the image to be pushed to Artifact Registry
+#   - 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app1:$COMMIT_SHA'
 
 substitutions:
   _IMAGE_NAME: 'us-central1-docker.pkg.dev/csci5409-427820/k8s-assignment/app1'
