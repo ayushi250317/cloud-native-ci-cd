@@ -46,7 +46,7 @@ public class InputController {
             return ResponseEntity.ok(messageResponse);
         }
         else {
-            ErrorResponse errorResponse = ErrorResponse.builder().file(request.getFile()).error("Error while storing the file to the storage.")
+            ErrorResponse errorResponse = ErrorResponse.builder().file(request.getFile()).error("Invalid JSON input.")
                     .build();
             return ResponseEntity.ok(errorResponse);
         }
