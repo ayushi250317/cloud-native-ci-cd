@@ -1,43 +1,57 @@
 package com.assignment1.csvreader.CsvReader;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
-@RequiredArgsConstructor
+@Slf4j
 public class CsvReaderService {
-    private final ResourceLoader resourceLoader;
-     public Integer calculateSum(String fileName, String product) throws CsvValidationException, IOException {
+
+    public Integer calculateSum(String fileName, String product) throws CsvValidationException, IOException {
         String rootPath = "/Ayushi_PV_dir/";
         String filePath = rootPath + fileName;
         List<String[]> records = new ArrayList<>();
-        Resource resource = resourceLoader.getResource(filePath);
-        try (InputStreamReader reader = new InputStreamReader(resource.getInputStream());
-                CSVReader csvReader = new CSVReader(reader)) {
+
+        File file = new File(filePath);
+        if (!file.exists()) {
+            log.error("File does not exist: {}", filePath);
+            throw new IOException("File not found: " + filePath);
+        }
+
+        log.info("Attempting to read file: {}", filePath);
+
+        try (CSVReader csvReader = new CSVReader(new FileReader(file))) {
             String[] record;
             while ((record = csvReader.readNext()) != null) {
                 records.add(record);
             }
         } catch (IOException e) {
+            log.error("Error reading CSV file: {}", e.getMessage());
+            throw e;
         }
-        Integer sum=records.size();
+
+        log.info("Successfully read {} records from file", records.size());
+
+        int sum = 0;
         for (int i = 1; i < records.size(); i++) {
             String[] record = records.get(i);
-            if(record[0].trim().equals(product)){
-                sum+=Integer.parseInt(record[1].trim());
+            if (record[0].trim().equals(product)) {
+                sum += Integer.parseInt(record[1].trim());
             }
         }
+
+        log.info("Calculated sum for product {}: {}", product, sum);
+
         return sum;
     }
 }
